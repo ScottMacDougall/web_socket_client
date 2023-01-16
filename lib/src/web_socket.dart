@@ -27,11 +27,13 @@ class WebSocket {
   WebSocket(
     Uri uri, {
     Iterable<String>? protocols,
+    Map<String, dynamic>? headers,
     Duration? pingInterval,
     Backoff? backoff,
     Duration? timeout,
   })  : _uri = uri,
         _protocols = protocols,
+        _headers = headers,
         _pingInterval = pingInterval,
         _backoff = backoff ?? _defaultBackoff,
         _timeout = timeout ?? _defaultTimeout {
@@ -40,6 +42,7 @@ class WebSocket {
 
   final Uri _uri;
   final Iterable<String>? _protocols;
+  final Map<String, dynamic>? _headers;
   final Duration? _pingInterval;
   final Backoff _backoff;
   final Duration _timeout;
@@ -89,6 +92,7 @@ class WebSocket {
       final ws = await connect(
         _uri.toString(),
         protocols: _protocols,
+        headers: _headers,
         pingInterval: _pingInterval,
       ).timeout(_timeout);
 
