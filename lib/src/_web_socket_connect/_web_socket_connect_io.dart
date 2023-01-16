@@ -4,8 +4,13 @@ import 'dart:io';
 Future<WebSocket> connect(
   String url, {
   Iterable<String>? protocols,
+  Map<String, dynamic>? headers,
   Duration? pingInterval,
 }) async {
-  return await WebSocket.connect(url, protocols: protocols)
+  return await WebSocket.connect(
+    url,
+    protocols: protocols,
+    headers: headers,
+  )
     ..pingInterval = pingInterval;
 }
